@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<h1>Activities</h1>
+<p>
+<form method="GET" action="">
+<input type='text' name='q' placeholder='Search' value='{{ request.GET.q }}'>
+<input type='submit' value='Search'/>
+</form>
+</p>
+<ul>
+{% for instance in object_list %}
+    <li><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a><br/>
+  {{ instance.description|truncatechars:100 }}<br/>
+  {{ instance.supplier }}<br/>
+  {{ instance.price }}</li>
+{% empty %}
+    <li>No Activities found.</li>
+{% endfor %}
+</ul>
+
+
+
+{% endblock %}
+
+
+<!-- <li><a href="{% url 'core:detail_slug' instance %}">{{ instance.title }}</a></li> -->

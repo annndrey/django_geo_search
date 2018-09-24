@@ -1,0 +1,57 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Recreativo</title>
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+  <!--   <link href="https://a0.muscache.com/airbnb/static/packages/dls/common_o2.1_cereal-6bf9ecb86cf7778b2a9e37e46d074467.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="https://a0.muscache.com/airbnb/static/packages/common-fe6417d78cb04cc1608eaa88d8936916.css" media="all" rel="stylesheet" type="text/css" />
+
+
+
+      <link href="https://a0.muscache.com/airbnb/static/packages/map_search-d55494d5d67cad471188f7e1ce5a67d8.css" media="screen" rel="stylesheet" type="text/css" /><link href="https://a0.muscache.com/airbnb/static/packages/p3-cf46e612e26c5bdfae9d01a9c28e166c.css" media="screen" rel="stylesheet" type="text/css" /> -->
+    <style>
+      {% block style %}{% endblock style %}
+    </style>
+  </head>
+  <body>
+
+    <nav class='navbar mynav' role='navigation' id='navbar'>
+      <div class="container">
+        <a class='navbar-brand mynav' href="{% url 'home' %}">Recreativo</a>
+
+        <ul class='nav navbar-nav navbar-right'>
+          {% if user.is_authenticated %}
+                <li><a href="{% url 'core:list' %}" class="btn btn-simple">Activities</a></li>
+                <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
+          {% else %}
+                <li><a href="{% url 'core:list' %}" class="btn btn-simple">Activities</a></li>
+                <li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
+                <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <div class="container mycontent">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

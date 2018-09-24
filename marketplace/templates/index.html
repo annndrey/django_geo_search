@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+
+
+  </head>
+  <body>
+
+
+
+  </body>
+</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Copilul tau este interesat de ...</h1>
+
+
+<p>
+<form method="GET" role="search" action='{% url 'core:list' %}'>
+  <div class="form-group">
+    <input type='text' class="form-control" name='q' placeholder='Search' value='{{ request.GET.q }}'>
+  </div>
+
+<button type='submit' class="btn btn-default">Submit</button>
+</form>
+</p>
+
+<ul>
+{% for instance in object_list %}
+    <li><a href='{{ instance.get_absolute_url }}'>{{ instance.title }}</a><br/>
+  {{ instance.description|truncatechars:100 }}<br/>
+  {{ instance.supplier }}<br/>
+  {{ instance.price }}</li>
+{% endfor %}
+</ul>
+
+{% endblock %}
